@@ -571,6 +571,15 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
   </div>
 </div>
 
+<!-- Envío del pedido al Sheet: formulario oculto + iframe oculto.
+     (fetch() directo a Apps Script suele fallar con 401 por CORS/redirects;
+     un <form> apuntando a un iframe oculto es el método clásico y confiable
+     para postear datos a un Apps Script Web App desde un sitio estático.) -->
+<iframe name="pedido-target-frame" style="display:none;"></iframe>
+<form id="pedido-form" method="POST" target="pedido-target-frame" style="display:none;">
+  <input type="hidden" name="payload" id="pedido-payload">
+</form>
+
 <script>
 // ── CONFIGURACIÓN ──────────────────────────────────────────────
 const WA_YAMIR = '5493482545079';
@@ -1321,19 +1330,25 @@ function fmtARSpdf(n) {
 // Manda los datos del pedido a la pestaña "Pedidos" de tu Google Sheet.
 // Si todavía no configuraste APPS_SCRIPT_URL, no hace nada (no rompe
 // la descarga del PDF ni el resto del checkout).
+//
+// Se usa un <form> oculto que postea a un <iframe> oculto (no fetch):
+// llamar a Apps Script con fetch() suele devolver 401 por cómo maneja
+// las redirecciones entre script.google.com y script.googleusercontent.com
+// en pedidos cross-origin. Un POST de formulario de verdad no tiene ese
+// problema — es la forma clásica y confiable de hacer esto.
 function registrarPedidoEnSheet(datos) {
   if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PEGA_AQUI_LA_URL_DEL_APPS_SCRIPT') {
     console.log('APPS_SCRIPT_URL no configurada — el pedido no se registró en el Sheet.');
     return;
   }
-  // mode: 'no-cors' porque Apps Script Web Apps no siempre responden con
-  // headers CORS; no necesitamos leer la respuesta, solo que el POST llegue.
-  fetch(APPS_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(datos),
-  }).catch(e => console.log('No se pudo registrar el pedido en el Sheet:', e));
+  try {
+    document.getElementById('pedido-payload').value = JSON.stringify(datos);
+    const form = document.getElementById('pedido-form');
+    form.action = APPS_SCRIPT_URL;
+    form.submit();
+  } catch(e) {
+    console.log('No se pudo registrar el pedido en el Sheet:', e);
+  }
 }
 
 // ── BÚSQUEDA EN TIEMPO REAL ─────────────────────────────────────
