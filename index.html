@@ -577,6 +577,10 @@ const WA_YAMIR = '5493482545079';
 const WA_MATEO = '5493482533984';
 const MP_LINK = 'https://mpago.la/TULINK';
 
+// URL del Apps Script que registra cada pedido en la pestaña "Pedidos" del Sheet.
+// Ver instrucciones en AppsScript_RegistrarPedidos.gs.txt para obtenerla.
+const APPS_SCRIPT_URL = 'PEGA_AQUI_LA_URL_DEL_APPS_SCRIPT';
+
 // ID del Google Sheet — reemplazá con el tuyo
 // Para obtenerlo: abrí tu Sheet → la URL tiene /d/XXXX/edit → copiá ese XXXX
 const SHEET_ID = '16v1HNM_8J0sFHu0gum-HlfNZnQIYeewEuLUPa8SlmuM';
@@ -1275,6 +1279,23 @@ function generarOrdenPDF() {
   const nombreArchivo = `Pedido-TriunfArMarket-${numeroPedido}.pdf`;
   doc.save(nombreArchivo);
 
+  // ── Registrar el pedido en la pestaña "Pedidos" del Sheet ──
+  // Esto pasa apenas se genera el PDF, sin depender de que el cliente
+  // después toque el botón de WhatsApp — así siempre queda un registro.
+  const productosDetalle = carrito.map(item => {
+    const { ars } = precioItemCarrito(item);
+    return `${item.nombre} x${item.cantidad} (${fmtARSpdf(ars)} c/u) = ${fmtARSpdf(ars * item.cantidad)}`;
+  }).join(' | ');
+
+  registrarPedidoEnSheet({
+    fecha: `${fecha} ${hora}`,
+    numeroPedido,
+    nombre, telefono, dni, direccion, ciudad, provincia, envio, notas,
+    productos: productosDetalle,
+    cantidadUnidades: totalUnidades,
+    totalARS,
+  });
+
   // ── Armar mensajes de WhatsApp con instrucciones para adjuntar el PDF ──
   const msg = encodeURIComponent(
     `Hola! Soy ${nombre}. Te acabo de descargar mi orden de compra en PDF (Nº ${numeroPedido}, total ${fmtARS(totalARS)}). Te la adjunto en este chat. ¿Confirmamos el pedido?`
@@ -1294,6 +1315,25 @@ function generarOrdenPDF() {
 
 function fmtARSpdf(n) {
   return '$' + Math.round(n).toLocaleString('es-AR');
+}
+
+// ── REGISTRO DE PEDIDOS EN EL SHEET (vía Apps Script) ────────────
+// Manda los datos del pedido a la pestaña "Pedidos" de tu Google Sheet.
+// Si todavía no configuraste APPS_SCRIPT_URL, no hace nada (no rompe
+// la descarga del PDF ni el resto del checkout).
+function registrarPedidoEnSheet(datos) {
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'PEGA_AQUI_LA_URL_DEL_APPS_SCRIPT') {
+    console.log('APPS_SCRIPT_URL no configurada — el pedido no se registró en el Sheet.');
+    return;
+  }
+  // mode: 'no-cors' porque Apps Script Web Apps no siempre responden con
+  // headers CORS; no necesitamos leer la respuesta, solo que el POST llegue.
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(datos),
+  }).catch(e => console.log('No se pudo registrar el pedido en el Sheet:', e));
 }
 
 // ── BÚSQUEDA EN TIEMPO REAL ─────────────────────────────────────
