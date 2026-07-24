@@ -25,6 +25,27 @@
 }
 html{scroll-behavior:smooth;}
 body{font-family:'Inter',sans-serif;background:#F4F4F4;color:var(--negro);}
+body.landing-open{overflow:hidden;}
+
+/* ── LANDING (PANTALLA DE ENTRADA) ── */
+.landing{position:fixed;inset:0;z-index:1000;background:radial-gradient(circle at 50% 0%, #1c1c1c 0%, var(--negro) 65%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
+.landing.hide{display:none;}
+.landing-icon{width:72px;height:72px;background:var(--dorado);border-radius:16px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:34px;color:var(--negro);margin-bottom:1.4rem;box-shadow:0 10px 30px rgba(212,160,23,0.25);}
+.landing h1{font-size:2.4rem;font-weight:500;color:#fff;letter-spacing:-0.5px;}
+.landing h1 em{color:var(--dorado);font-style:normal;}
+.landing-slogan{font-size:14px;color:rgba(255,255,255,0.55);margin-top:10px;max-width:440px;line-height:1.6;}
+.landing-dolar{display:inline-flex;align-items:center;gap:8px;background:#1A1A1A;border:1px solid rgba(212,160,23,0.25);border-radius:99px;padding:8px 18px;margin-top:1.8rem;}
+.landing-dolar-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;animation:pulse 2s infinite;}
+.landing-dolar-label{font-size:11px;color:rgba(255,255,255,0.45);font-weight:500;}
+.landing-dolar-val{font-size:14px;font-weight:600;color:var(--dorado);}
+.landing-cta{margin-top:2.2rem;background:var(--dorado);color:var(--negro);border:none;padding:15px 38px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:transform 0.15s,opacity 0.15s;}
+.landing-cta:hover{transform:translateY(-2px);opacity:0.9;}
+.landing-trust{display:flex;gap:1.6rem;flex-wrap:wrap;justify-content:center;margin-top:2.6rem;}
+.landing-trust-item{font-size:11px;color:rgba(255,255,255,0.4);}
+.landing-garantia{font-size:10px;color:rgba(255,255,255,0.32);margin-top:1.4rem;max-width:420px;line-height:1.5;}
+
+/* ── APP (CATÁLOGO) ── */
+.app-hidden{display:none;}
 
 /* ── NAVBAR ── */
 .nav{background:var(--negro);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;position:sticky;top:0;z-index:200;}
@@ -70,17 +91,8 @@ body{font-family:'Inter',sans-serif;background:#F4F4F4;color:var(--negro);}
 .cat-item.active .cat-count{color:var(--dorado);}
 .cat-icon{font-size:16px;width:20px;text-align:center;}
 .cat-count{margin-left:auto;font-size:10px;color:var(--muted);}
-.sidebar-divider{height:1px;background:var(--borde);margin:12px 0;}
-.margin-section{}
-.margin-label{font-size:11px;color:var(--muted);margin-bottom:6px;}
-.margin-input-row{display:flex;align-items:center;gap:6px;}
-.margin-input{width:60px;height:32px;border:1px solid var(--borde);border-radius:6px;padding:0 8px;font-size:12px;font-family:'Inter',sans-serif;outline:none;}
-.margin-input:focus{border-color:var(--dorado);}
-.margin-apply{height:32px;padding:0 10px;background:var(--negro);color:var(--dorado);border:none;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;}
-.mayorista-section{margin-top:12px;}
-.mayorista-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;}
-.mayorista-toggle input{accent-color:var(--dorado);}
-.mayorista-toggle label{font-size:12px;color:var(--sec);cursor:pointer;}
+.sidebar-garantia{margin-top:14px;padding-top:14px;border-top:1px solid var(--borde);font-size:10.5px;color:var(--muted);line-height:1.6;}
+.sidebar-garantia strong{color:var(--sec);display:block;margin-bottom:4px;font-size:11px;}
 
 /* ── PRODUCTOS ── */
 .main{flex:1;padding:1rem;min-width:0;}
@@ -135,6 +147,7 @@ body{font-family:'Inter',sans-serif;background:#F4F4F4;color:var(--negro);}
 .modal-precio-ars{font-size:28px;font-weight:600;color:var(--negro);letter-spacing:-1px;}
 .modal-precio-usd{font-size:14px;color:var(--muted);margin-top:3px;}
 .modal-envio{font-size:12px;color:var(--verde);margin-top:6px;font-weight:500;line-height:1.5;}
+.modal-garantia{font-size:11px;color:var(--sec);margin-top:8px;line-height:1.55;padding-top:8px;border-top:1px solid var(--borde);}
 .modal-mayorista{margin-top:10px;padding-top:10px;border-top:1px solid var(--borde);}
 .modal-mayorista-title{font-size:11px;font-weight:600;color:var(--azul);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;}
 .modal-mayorista-precio{font-size:16px;font-weight:600;color:var(--azul);}
@@ -151,6 +164,7 @@ body{font-family:'Inter',sans-serif;background:#F4F4F4;color:var(--negro);}
 footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
 .footer-logo{font-size:15px;font-weight:500;color:#fff;margin-bottom:8px;}
 .footer-logo em{color:var(--dorado);font-style:normal;}
+.footer-garantia{font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:8px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6;}
 .footer-copy{font-size:10px;color:rgba(255,255,255,0.2);}
 
 /* ── RESPONSIVE ── */
@@ -158,13 +172,36 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
   .sidebar{display:none;}
   .prod-grid{grid-template-columns:repeat(2,1fr);}
   .nav-wa span{display:none;}
+  .landing h1{font-size:1.9rem;}
 }
 @media(max-width:400px){
   .prod-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
-<body>
+<body class="landing-open">
+
+<!-- ══════════════ PANTALLA DE ENTRADA ══════════════ -->
+<div class="landing" id="landing">
+  <div class="landing-icon">T</div>
+  <h1>Triunf<em>Ar</em> Market</h1>
+  <p class="landing-slogan">Productos reales, precios justos y envíos a todo el país.</p>
+  <div class="landing-dolar">
+    <span class="landing-dolar-dot"></span>
+    <span class="landing-dolar-label">USD Blue</span>
+    <span class="landing-dolar-val" id="landing-dolar-val">cargando...</span>
+  </div>
+  <button class="landing-cta" onclick="entrarTienda()">Ver productos →</button>
+  <div class="landing-trust">
+    <span class="landing-trust-item">✅ Productos originales sellados</span>
+    <span class="landing-trust-item">📦 Envíos a todo el país</span>
+    <span class="landing-trust-item">💳 MercadoPago · Transferencia</span>
+  </div>
+  <p class="landing-garantia">🛡️ Todos los productos originales tienen garantía. Demora de reparación por garantía: 1 a 2 meses.</p>
+</div>
+
+<!-- ══════════════ TIENDA (CATÁLOGO) ══════════════ -->
+<div class="app-hidden" id="app">
 
 <!-- NAVBAR -->
 <nav class="nav">
@@ -188,6 +225,7 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
 <!-- TRUST BAR -->
 <div class="trust-bar">
   <div class="trust-item">✅ Productos originales sellados</div>
+  <div class="trust-item">🛡️ Garantía en todos los productos</div>
   <div class="trust-item">📦 Envíos a todo el país</div>
   <div class="trust-item">💳 MercadoPago · Transferencia</div>
   <div class="trust-item">⭐ Precio mayorista disponible</div>
@@ -248,37 +286,9 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
       <li class="cat-item" data-cat="Lentes" onclick="filtrarCat(this,'Lentes')"><span class="cat-icon">🔭</span> Lentes <span class="cat-count" id="count-Lentes">0</span></li>
       <li class="cat-item" data-cat="Figuritas" onclick="filtrarCat(this,'Figuritas')"><span class="cat-icon">⭐</span> Figuritas <span class="cat-count" id="count-Figuritas">0</span></li>
     </ul>
-
-    <div class="sidebar-divider"></div>
-
-    <p class="sidebar-title">Mi margen de ganancia</p>
-    <div class="margin-section">
-      <p class="margin-label">% sobre precio proveedor</p>
-      <div class="margin-input-row">
-        <input type="number" class="margin-input" id="margen-global" value="20" min="0" max="200">
-        <span style="font-size:12px;color:var(--muted);">%</span>
-        <button class="margin-apply" onclick="aplicarMargen()">OK</button>
-      </div>
-      <p style="font-size:10px;color:var(--muted);margin-top:6px;">Solo vos ves esto. El cliente ve el precio final.</p>
-    </div>
-
-    <div class="sidebar-divider"></div>
-
-    <div class="mayorista-section">
-      <p class="sidebar-title">Precio mayorista</p>
-      <div style="margin-bottom:8px;">
-        <p class="margin-label">Cantidad mínima</p>
-        <input type="number" class="margin-input" id="cant-mayorista" value="5" min="1" style="width:70px;">
-        <span style="font-size:11px;color:var(--muted);margin-left:4px;">unidades</span>
-      </div>
-      <div>
-        <p class="margin-label">Descuento mayorista</p>
-        <div class="margin-input-row">
-          <input type="number" class="margin-input" id="desc-mayorista" value="10" min="0" max="90">
-          <span style="font-size:12px;color:var(--muted);">%</span>
-          <button class="margin-apply" onclick="aplicarMargen()">OK</button>
-        </div>
-      </div>
+    <div class="sidebar-garantia">
+      <strong>🛡️ Garantía</strong>
+      Todos los productos originales tienen garantía. Demora de reparación por garantía: 1 a 2 meses.
     </div>
   </aside>
 
@@ -301,6 +311,15 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
   </main>
 </div>
 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Triunf<em>Ar</em> Market</div>
+  <div class="footer-garantia">🛡️ Todos los productos originales tienen garantía. Demora de reparación por garantía: 1 a 2 meses.</div>
+  <div class="footer-copy">© 2026 TriunfAr Market · Rosario, Santa Fe · Argentina · Productos reales, precios justos y envíos a todo el país.</div>
+</footer>
+
+</div> <!-- /#app -->
+
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="cerrarModal(event)">
   <div class="modal" id="modal">
@@ -313,6 +332,7 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
       <div class="modal-precio-ars" id="modal-precio-ars"></div>
       <div class="modal-precio-usd" id="modal-precio-usd"></div>
       <div class="modal-envio">📦 + envío · Correo Argentino / OCA / Andreani / Via Cargo<br>Consultá el costo a tu ciudad por WhatsApp</div>
+      <div class="modal-garantia">🛡️ Producto original con garantía. Demora de reparación por garantía: 1 a 2 meses.</div>
       <div class="modal-mayorista" id="modal-mayorista-block" style="display:none;">
         <div class="modal-mayorista-title">💼 Precio Mayorista</div>
         <div class="modal-mayorista-precio" id="modal-mayorista-precio"></div>
@@ -332,12 +352,6 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Triunf<em>Ar</em> Market</div>
-  <div class="footer-copy">© 2026 TriunfAr Market · Rosario, Santa Fe · Argentina · Productos reales, precios justos y envíos a todo el país.</div>
-</footer>
-
 <script>
 // ── CONFIGURACIÓN ──────────────────────────────────────────────
 const WA_NUM = '549TUNUMERO';
@@ -348,6 +362,8 @@ const MP_LINK = 'https://mpago.la/TULINK';
 const SHEET_ID = '16v1HNM_8J0sFHu0gum-HlfNZnQIYeewEuLUPa8SlmuM';
 
 // ── ESTADO ──────────────────────────────────────────────────────
+// Margen y condiciones mayoristas: fijos (ya no editables por el visitante).
+// Cambiá estos valores acá si querés ajustar el margen general de la tienda.
 let dolarBlue = 1580;
 let margenGlobal = 20;
 let cantMayorista = 5;
@@ -356,16 +372,30 @@ let catActiva = '';
 let todosProductos = [];
 let productosFiltrados = [];
 
+// ── ENTRADA A LA TIENDA ──────────────────────────────────────────
+function entrarTienda() {
+  document.getElementById('landing').classList.add('hide');
+  document.getElementById('app').classList.remove('app-hidden');
+  document.body.classList.remove('landing-open');
+  window.scrollTo(0, 0);
+}
+
 // ── COTIZACIÓN DÓLAR ────────────────────────────────────────────
 async function cargarDolar() {
   try {
     const res = await fetch('https://dolarapi.com/v1/dolares/blue');
     const data = await res.json();
     dolarBlue = data.venta;
-    document.getElementById('dolar-val').textContent = '$' + dolarBlue.toLocaleString('es-AR');
+    const val = '$' + dolarBlue.toLocaleString('es-AR');
+    document.getElementById('dolar-val').textContent = val;
+    const landingVal = document.getElementById('landing-dolar-val');
+    if (landingVal) landingVal.textContent = val;
     renderProductos();
   } catch(e) {
-    document.getElementById('dolar-val').textContent = '$' + dolarBlue.toLocaleString('es-AR');
+    const val = '$' + dolarBlue.toLocaleString('es-AR');
+    document.getElementById('dolar-val').textContent = val;
+    const landingVal = document.getElementById('landing-dolar-val');
+    if (landingVal) landingVal.textContent = val;
     console.log('Usando cotización por defecto');
   }
 }
@@ -502,13 +532,6 @@ function filtrarCat(el, cat) {
   renderProductos();
 }
 
-function aplicarMargen() {
-  margenGlobal = parseInt(document.getElementById('margen-global').value) || 20;
-  cantMayorista = parseInt(document.getElementById('cant-mayorista').value) || 5;
-  descMayorista = parseInt(document.getElementById('desc-mayorista').value) || 10;
-  renderProductos();
-}
-
 function renderProductos() {
   const grid = document.getElementById('prod-grid');
   const busqueda = document.getElementById('search-input').value.toLowerCase().trim();
@@ -616,7 +639,7 @@ function cerrarModal(e) {
 }
 function cerrarModalBtn() {
   document.getElementById('modal-overlay').classList.remove('show');
-  document.body.style.overflow = '';
+  document.body.style.overflow = document.getElementById('app').classList.contains('app-hidden') ? 'hidden' : '';
 }
 
 // ── BÚSQUEDA EN TIEMPO REAL ─────────────────────────────────────
@@ -630,6 +653,9 @@ document.getElementById('filter-cat').addEventListener('change', function() {
 });
 
 // ── INICIAR ─────────────────────────────────────────────────────
+// La cotización y los productos se precargan en segundo plano mientras
+// se muestra la pantalla de entrada, para que al tocar "Ver productos"
+// el catálogo ya esté listo.
 (async function init() {
   await cargarDolar();
   await cargarProductos();
