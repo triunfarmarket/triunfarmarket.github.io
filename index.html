@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TriunfAr Market — Productos reales, precios justos</title>
+<meta name="description" content="Productos reales, precios justos y envíos a todo el país. Emprendimiento rosarino comprometido con la honestidad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --negro: #111111;
+    --negro-prof: #0A0A0A;
+    --dorado: #D4A017;
+    --dorado-claro: #F0C040;
+    --fondo-crema: #F7F5F0;
+    --blanco: #FFFFFF;
+    --borde: #E8E4DA;
+    --texto-muted: #888888;
+    --texto-sec: #555555;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--blanco);
+    color: var(--negro);
+    line-height: 1.6;
+  }
+
+  /* ── NAVBAR ── */
+  .nav {
+    background: var(--negro);
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--dorado);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--negro);
+    flex-shrink: 0;
+  }
+  .nav-logo-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--blanco);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-text span { color: var(--dorado); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--dorado); }
+  .nav-wa {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--dorado);
+    color: var(--negro);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 7px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .nav-wa:hover { opacity: 0.9; }
+  .nav-wa svg { width: 16px; height: 16px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--negro);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(212,160,23,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(212,160,23,0.12);
+    border: 0.5px solid rgba(212,160,23,0.35);
+    color: var(--dorado);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 5px 14px;
+    border-radius: 99px;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 600;
+    color: var(--blanco);
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .hero h1 span { color: var(--dorado); }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    max-width: 440px;
+    margin: 0 auto 2rem;
+    line-height: 1.65;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--dorado);
+    color: var(--negro);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn-gold:hover { opacity: 0.9; }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--blanco);
+    font-size: 13px;
+    font-weight: 400;
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 0.5px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--dorado); color: var(--dorado); }
+  .btn-gold svg, .btn-outline svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: #1A1A1A;
+    padding: 0.9rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+  }
+  .trust-item svg { width: 16px; height: 16px; color: var(--dorado); flex-shrink: 0; }
+
+  /* ── SECCIONES GENERALES ── */
+  .section { padding: 3.5rem 2rem; }
+  .section-crema { background: var(--fondo-crema); }
+  .section-negro { background: var(--negro); }
+  .section-blanco { background: var(--blanco); }
+  .section-header { text-align: center; margin-bottom: 2rem; }
+  .section-header h2 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 5px;
+    color: var(--negro);
+  }
+  .section-header h2.white { color: var(--blanco); }
+  .section-header p { font-size: 13px; color: var(--texto-muted); }
+  .section-header p.white { color: rgba(255,255,255,0.4); }
+
+  /* ── CATEGORÍAS ── */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .cat-card {
+    background: var(--blanco);
+    border: 0.5px solid var(--borde);
+    border-radius: 12px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.15s, transform 0.15s;
+    cursor: pointer;
+  }
+  .cat-card:hover { border-color: var(--dorado); transform: translateY(-2px); }
+  .cat-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--fondo-crema);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+  }
+  .cat-icon svg { width: 22px; height: 22px; color: var(--dorado); }
+  .cat-name { font-size: 13px; font-weight: 500; color: var(--negro); margin-bottom: 2px; }
+  .cat-desc { font-size: 11px; color: var(--texto-muted); }
+
+  /* ── PRODUCTOS ── */
+  .prod-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .prod-card {
+    background: var(--blanco);
+    border: 0.5px solid var(--borde);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .prod-card:hover { border-color: var(--dorado); transform: translateY(-2px); }
+  .prod-img {
+    background: var(--fondo-crema);
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 52px;
+  }
+  .prod-img svg { width: 56px; height: 56px; color: var(--dorado); opacity: 0.3; }
+  .prod-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--dorado);
+    color: var(--negro);
+    font-size: 9px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 99px;
+    letter-spacing: 0.05em;
+  }
+  .prod-body { padding: 12px; }
+  .prod-name { font-size: 13px; font-weight: 500; color: var(--negro); margin-bottom: 3px; }
+  .prod-desc { font-size: 11px; color: var(--texto-muted); margin-bottom: 10px; line-height: 1.4; }
+  .prod-footer { display: flex; align-items: center; justify-content: space-between; }
+  .prod-price { font-size: 15px; font-weight: 600; color: var(--negro); }
+  .prod-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+  .prod-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--negro);
+    color: var(--dorado);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+  .prod-btn:hover { opacity: 0.85; }
+  .prod-btn svg { width: 13px; height: 13px; }
+  .prod-btn-mp {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #009EE3;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+  .prod-btn-mp:hover { opacity: 0.85; }
+  .prod-btn-mp svg { width: 13px; height: 13px; }
+  .prod-footer { display: flex; flex-direction: column; gap: 8px; }
+  .prod-price { font-size: 15px; font-weight: 600; color: var(--negro); }
+
+  /* ── POR QUÉ ELEGIRNOS ── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .why-card {
+    background: rgba(255,255,255,0.05);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: border-color 0.15s;
+  }
+  .why-card:hover { border-color: rgba(212,160,23,0.4); }
+  .why-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(212,160,23,0.12);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  .why-icon svg { width: 20px; height: 20px; color: var(--dorado); }
+  .why-title { font-size: 13px; font-weight: 500; color: var(--blanco); margin-bottom: 4px; }
+  .why-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.55; }
+
+  /* ── RESEÑAS ── */
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .review-card {
+    background: var(--blanco);
+    border: 0.5px solid var(--borde);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .review-stars { color: var(--dorado); font-size: 14px; letter-spacing: 2px; margin-bottom: 8px; }
+  .review-text { font-size: 12px; color: var(--texto-sec); line-height: 1.65; margin-bottom: 10px; font-style: italic; }
+  .review-author { font-size: 12px; font-weight: 500; color: var(--negro); }
+  .review-loc { font-size: 11px; color: var(--texto-muted); }
+
+  /* ── CTA DORADO ── */
+  .cta-section {
+    background: var(--dorado);
+    padding: 3.5rem 2rem;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--negro);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .cta-section p {
+    font-size: 14px;
+    color: rgba(0,0,0,0.55);
+    margin-bottom: 1.5rem;
+  }
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--negro);
+    color: var(--dorado);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 13px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn-dark:hover { opacity: 0.85; }
+  .btn-dark svg { width: 18px; height: 18px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--negro-prof);
+    padding: 2rem;
+    text-align: center;
+  }
+  .footer-logo { font-size: 16px; font-weight: 500; color: var(--blanco); margin-bottom: 12px; }
+  .footer-logo span { color: var(--dorado); }
+  .footer-links { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.15s; }
+  .footer-links a:hover { color: var(--dorado); }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.15); }
+
+  /* ── WHATSAPP FLOTANTE ── */
+  .wa-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 54px;
+    height: 54px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    z-index: 999;
+    transition: transform 0.15s;
+  }
+  .wa-float:hover { transform: scale(1.08); }
+  .wa-float svg { width: 28px; height: 28px; color: white; }
+
+  /* ── RESPONSIVE ── */
+  .urgency-bar {
+    background: linear-gradient(90deg, #1A1A1A, #111111, #1A1A1A);
+    background: #1A1A1A;
+    padding: 0.7rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-top: 1px solid rgba(212,160,23,0.2);
+    border-bottom: 1px solid rgba(212,160,23,0.2);
+  }
+  .urgency-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4ADE80;
+    animation: pulse-dot 1.6s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .urgency-text {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+  }
+  .urgency-text strong { color: var(--dorado); }
+
+  /* ── CONTADOR EN VIVO ── */
+  .live-counter {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 1.75rem;
+  }
+  .live-stat { text-align: center; }
+  .live-stat-num {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--dorado);
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+  .live-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── PRUEBA SOCIAL FLOTANTE ── */
+  .social-proof-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    background: var(--blanco);
+    border: 0.5px solid var(--borde);
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 280px;
+    z-index: 998;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s, transform 0.4s;
+  }
+  .social-proof-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .social-proof-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--fondo-crema);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+  .social-proof-icon svg { width: 18px; height: 18px; color: var(--dorado); }
+  .social-proof-text { font-size: 12px; color: var(--texto-sec); line-height: 1.4; }
+  .social-proof-text strong { color: var(--negro); }
+  .social-proof-time { font-size: 10px; color: var(--texto-muted); margin-top: 2px; }
+
+  @media (max-width: 600px) {
+    .social-proof-toast { left: 12px; right: 12px; max-width: none; bottom: 90px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">T</div>
+    <span class="nav-logo-text">Triunf<span>Ar</span> Market</span>
+  </a>
+  <div class="nav-links">
+    <a href="#productos">Productos</a>
+    <a href="#categorias">Categorías</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="https://wa.me/549TUNUMERO?text=Hola!%20Vi%20tu%20tienda%20TriunfAr%20Market%20y%20quiero%20consultar." class="nav-wa" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">ROSARIO · ARGENTINA</span>
+  <h1>Triunf<span>Ar</span> Market</h1>
+  <p class="hero-sub">Productos reales, precios justos y envíos a todo el país.</p>
+  <div class="hero-btns">
+    <a href="#productos" class="btn-gold">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Ver productos
+    </a>
+    <a href="https://wa.me/549TUNUMERO?text=Hola!%20Vi%20tu%20tienda%20TriunfAr%20Market%20y%20quiero%20consultar." class="btn-outline" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+      Consultar por WhatsApp
+    </a>
+  </div>
+  <div class="live-counter">
+    <div class="live-stat">
+      <div class="live-stat-num" id="counter-clientes">0</div>
+      <div class="live-stat-label">Clientes felices</div>
+    </div>
+    <div class="live-stat">
+      <div class="live-stat-num" id="counter-envios">0</div>
+      <div class="live-stat-label">Envíos realizados</div>
+    </div>
+    <div class="live-stat">
+      <div class="live-stat-num">4.9★</div>
+      <div class="live-stat-label">Calificación</div>
+    </div>
+  </div>
+</section>
+
+<div class="urgency-bar">
+  <span class="urgency-dot"></span>
+  <span class="urgency-text">🔥 <strong>12 personas</strong> están viendo esta tienda ahora mismo</span>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Compra segura
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    Envíos a todo el país
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    Clientes satisfechos
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+    Atención por WhatsApp
+  </div>
+</div>
+
+<!-- CATEGORÍAS -->
+<section id="categorias" class="section section-crema">
+  <div class="section-header">
+    <h2>Categorías</h2>
+    <p>Encontrá lo que buscás</p>
+  </div>
+  <div class="cat-grid">
+    <a href="#productos" class="cat-card">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="cat-name">Coleccionables</div>
+      <div class="cat-desc">Figuritas y más</div>
+    </a>
+    <a href="#productos" class="cat-card">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      </div>
+      <div class="cat-name">Diseño</div>
+      <div class="cat-desc">Arte y creatividad</div>
+    </a>
+    <a href="#productos" class="cat-card">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+      </div>
+      <div class="cat-name">Varios</div>
+      <div class="cat-desc">Productos generales</div>
+    </a>
+    <a href="#productos" class="cat-card">
+      <div class="cat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <div class="cat-name">Novedades</div>
+      <div class="cat-desc">Recién llegados</div>
+    </a>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section id="productos" class="section section-blanco">
+  <div class="section-header">
+    <h2>Productos destacados</h2>
+    <p>Lo más buscado esta semana</p>
+  </div>
+  <div class="prod-grid">
+
+    <!-- PRODUCTO 1: CAJA x1000 -->
+    <div class="prod-card">
+      <div class="prod-img" style="background:#F0EDE6;">
+        <img src="https://i.postimg.cc/T1mxfR3C/2884-628-caja-de-figuritas-copa-del-mundo-mundial-2026-panini-coleccion-oficial-wowco-com-ar.jpg" alt="Caja Panini x1000 sobres Mundial 2026" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Caja Panini x1000 sobres — Mundial 2026</div>
+        <div class="prod-desc">Caja cerrada oficial Panini · 1000 sobres de 7 figuritas c/u · Ideal para reventa o colección completa</div>
+        <div class="prod-footer">
+          <span class="prod-price">$2.250.000</span>
+          <div class="prod-btns">
+            <a href="https://wa.me/549TUNUMERO?text=Hola!%20Quiero%20consultar%20por%20la%20Caja%20Panini%20x1000%20sobres%20Mundial%202026%20%E2%80%94%20%242.250.000.%20%C2%BFTienen%20stock?" class="prod-btn" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+              Consultar
+            </a>
+            <a href="https://mpago.la/TULINK" class="prod-btn-mp" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Pagar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTO 2: ÁLBUM -->
+    <div class="prod-card">
+      <div class="prod-img" style="background:#F0EDE6;">
+        <img src="https://i.postimg.cc/PqLFBSxc/2885-122-caja-de-album-de-figuritas-copa-del-mundo-mundial-2026-panini-coleccion-oficial-wowco-com-a.jpg" alt="Álbum oficial Panini Mundial 2026" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Álbum oficial Panini — Mundial 2026</div>
+        <div class="prod-desc">Álbum tapa dura oficial · Para completar con los sobres · Colección FIFA World Cup 2026</div>
+        <div class="prod-footer">
+          <span class="prod-price">$15.000</span>
+          <div class="prod-btns">
+            <a href="https://wa.me/549TUNUMERO?text=Hola!%20Quiero%20consultar%20por%20el%20%C3%81lbum%20oficial%20Panini%20Mundial%202026.%20%C2%BFCu%C3%A1l%20es%20el%20precio?" class="prod-btn" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+              Consultar
+            </a>
+            <a href="https://mpago.la/TULINK" class="prod-btn-mp" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Pagar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTO 3: FIGURITAS POR LOTE -->
+    <div class="prod-card">
+      <div class="prod-img" style="background:#F0EDE6;">
+        <img src="https://i.postimg.cc/cJYBR2Ck/D-NQ-NP-838561-MLA111198013875-052026-O.webp" alt="Figuritas por lote Mundial 2026" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Figuritas por lote — Mundial 2026</div>
+        <div class="prod-desc">Sobres sueltos por cantidad · Ideal para completar el álbum · Pedí el lote que necesitás</div>
+        <div class="prod-footer">
+          <span class="prod-price">$2.300 c/sobre</span>
+          <div class="prod-btns">
+            <a href="https://wa.me/549TUNUMERO?text=Hola!%20Quiero%20consultar%20figuritas%20por%20lote%20del%20Mundial%202026.%20%C2%BFQu%C3%A9%20cantidades%20tienen%20disponibles?" class="prod-btn" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+              Consultar
+            </a>
+            <a href="https://mpago.la/TULINK" class="prod-btn-mp" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Pagar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTO 4: COMBO 5 ÁLBUMES + 200 FIGURITAS -->
+    <div class="prod-card">
+      <div class="prod-img" style="background:#F0EDE6;">
+        <img src="https://i.postimg.cc/Y0j43L8t/photoroom-20260428-183518-504fdf095623e3f79e17774782717156-640-0.webp" alt="Combo 5 álbumes + 200 figuritas Mundial 2026" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">Combo 5 Álbumes + 200 Figuritas — Mundial 2026</div>
+        <div class="prod-desc">5 álbumes oficiales Panini + 200 sobres · Ideal para regalo o reventa · Todo en un solo pedido</div>
+        <div class="prod-footer">
+          <span class="prod-price">$522.500</span>
+          <div class="prod-btns">
+            <a href="https://wa.me/549TUNUMERO?text=Hola!%20Quiero%20comprar%20el%20Combo%205%20%C3%81lbumes%20%2B%20200%20Figuritas%20%E2%80%94%20%24522.500.%20%C2%BFTienen%20stock?" class="prod-btn" target="_blank">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+              Consultar
+            </a>
+            <a href="https://mpago.la/TULINK" class="prod-btn-mp" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Pagar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<section id="nosotros" class="section section-negro">
+  <div class="section-header">
+    <h2 class="white">Por qué elegirnos</h2>
+    <p class="white">Lo que nos hace diferentes</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="why-title">Sin estafas</div>
+      <div class="why-desc">Lo que ves en la foto es exactamente lo que recibís. Siempre.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <div class="why-title">Atención real</div>
+      <div class="why-desc">Respondemos por WhatsApp, persona a persona, sin bots.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div class="why-title">Envíos rápidos</div>
+      <div class="why-desc">Despachamos desde Rosario a todo el país sin demoras.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      <div class="why-title">Precio justo</div>
+      <div class="why-desc">Sin remarcar. El precio que ves es el precio real.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section class="section section-crema">
+  <div class="section-header">
+    <h2>Lo que dicen nuestros clientes</h2>
+    <p>Reseñas reales de compradores</p>
+  </div>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Llegó exactamente como la foto, bien embalado y rápido. ¡Volvería a comprar sin dudarlo!"</p>
+      <div class="review-author">Martina G.</div>
+      <div class="review-loc">Buenos Aires</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Compré el pack de figuritas y todo perfecto. Me respondieron al toque por WhatsApp."</p>
+      <div class="review-author">Lucas R.</div>
+      <div class="review-loc">Córdoba</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Producto de calidad y precio honesto. Un emprendimiento que recomiendo a todos."</p>
+      <div class="review-author">Sofía M.</div>
+      <div class="review-loc">Mendoza</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA DORADO -->
+<section class="cta-section">
+  <h2>¿Listo para comprar sin miedo?</h2>
+  <p>Escribinos por WhatsApp y te ayudamos a encontrar lo que buscás.</p>
+  <a href="https://wa.me/549TUNUMERO?text=Hola!%20Vi%20tu%20tienda%20TriunfAr%20Market%20y%20quiero%20consultar." class="btn-dark" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+    Escribirnos ahora
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Triunf<span>Ar</span> Market</div>
+  <div class="footer-links">
+    <a href="#productos">Productos</a>
+    <a href="#categorias">Categorías</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="https://wa.me/549TUNUMERO" target="_blank">Contacto</a>
+  </div>
+  <div class="footer-copy">© 2026 TriunfAr Market · Rosario, Santa Fe · Argentina</div>
+</footer>
+
+<!-- BOTÓN WHATSAPP FLOTANTE -->
+<a href="https://wa.me/549TUNUMERO?text=Hola!%20Vi%20tu%20tienda%20TriunfAr%20Market%20y%20quiero%20consultar." class="wa-float" target="_blank" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+</a>
+
+<div class="social-proof-toast" id="social-toast">
+  <div class="social-proof-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+  </div>
+  <div>
+    <div class="social-proof-text"><strong id="toast-name">Martina</strong> <span id="toast-action">compró Figurita Messi</span></div>
+    <div class="social-proof-time" id="toast-time">Hace 2 minutos</div>
+  </div>
+</div>
+
+<script>
+  // Contador animado de clientes y envíos
+  function animateCounter(id, target, duration) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let start = 0;
+    const stepTime = 16;
+    const steps = duration / stepTime;
+    const increment = target / steps;
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        el.textContent = target.toLocaleString('es-AR');
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(start).toLocaleString('es-AR');
+      }
+    }, stepTime);
+  }
+  animateCounter('counter-clientes', 847, 1800);
+  animateCounter('counter-envios', 1230, 1800);
+
+  // Prueba social flotante rotativa
+  const proofs = [
+    { name: 'Martina G.', action: 'compró Figurita Messi', time: 'Hace 2 minutos' },
+    { name: 'Lucas R.', action: 'consultó por el Pack x10', time: 'Hace 5 minutos' },
+    { name: 'Sofía M.', action: 'compró el Álbum oficial', time: 'Hace 8 minutos' },
+    { name: 'Diego F.', action: 'consultó por el Combo', time: 'Hace 11 minutos' },
+    { name: 'Valentina P.', action: 'compró Figuritas por lote', time: 'Hace 14 minutos' }
+  ];
+  let proofIndex = 0;
+  const toast = document.getElementById('social-toast');
+
+  function showProof() {
+    const p = proofs[proofIndex % proofs.length];
+    document.getElementById('toast-name').textContent = p.name;
+    document.getElementById('toast-action').textContent = p.action;
+    document.getElementById('toast-time').textContent = p.time;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 5000);
+    proofIndex++;
+  }
+
+  setTimeout(showProof, 3000);
+  setInterval(showProof, 12000);
+</script>
+
+</body>
+</html>
