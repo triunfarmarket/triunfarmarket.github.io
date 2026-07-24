@@ -253,7 +253,7 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
     <option value="Aspiradoras">Aspiradoras Robot</option>
     <option value="Camaras">Cámaras</option>
     <option value="Lentes">Lentes</option>
-    <option value="Figuritas">Figuritas</option>
+    <option value="Coleccionables">Coleccionables</option>
   </select>
   <select class="search-select" id="filter-sort">
     <option value="nombre">A → Z</option>
@@ -286,7 +286,7 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
       <li class="cat-item" data-cat="Aspiradoras" onclick="filtrarCat(this,'Aspiradoras')"><span class="cat-icon">🤖</span> Aspiradoras <span class="cat-count" id="count-Aspiradoras">0</span></li>
       <li class="cat-item" data-cat="Camaras" onclick="filtrarCat(this,'Camaras')"><span class="cat-icon">📷</span> Cámaras <span class="cat-count" id="count-Camaras">0</span></li>
       <li class="cat-item" data-cat="Lentes" onclick="filtrarCat(this,'Lentes')"><span class="cat-icon">🔭</span> Lentes <span class="cat-count" id="count-Lentes">0</span></li>
-      <li class="cat-item" data-cat="Figuritas" onclick="filtrarCat(this,'Figuritas')"><span class="cat-icon">⭐</span> Figuritas <span class="cat-count" id="count-Figuritas">0</span></li>
+      <li class="cat-item" data-cat="Coleccionables" onclick="filtrarCat(this,'Coleccionables')"><span class="cat-icon">⭐</span> Coleccionables <span class="cat-count" id="count-Coleccionables">0</span></li>
     </ul>
     <div class="sidebar-garantia">
       <strong>📍 Ubicación</strong>
@@ -446,7 +446,7 @@ async function cargarProductos() {
   }
 
   try {
-    const hojas = ['iPhone','Motorola','Samsung','Xiaomi','MacBook','Notebooks','JBL','Drones','Monopatines','Aspiradoras','Camaras','Lentes','Figuritas'];
+    const hojas = ['iPhone','Motorola','Samsung','Xiaomi','MacBook','Notebooks','JBL','Drones','Monopatines','Aspiradoras','Camaras','Lentes','Coleccionables'];
     let todos = [];
 
     for (const hoja of hojas) {
@@ -503,7 +503,7 @@ function getDemoProductos() {
     {id:'demo-7',categoria:'JBL',codigo:'',nombre:'JBL Boombox 4',descripcion:'Parlante portátil Bluetooth · Original sellado con garantía',precio_usd:689,margen:20,precio_mayorista_usd:650,cant_min_mayorista:3,foto:''},
     {id:'demo-8',categoria:'Drones',codigo:'',nombre:'DJI Mini 5 Pro · Fly More Combo',descripcion:'Drone DJI RC 2 · Nuevo sellado · Garantía 1 año',precio_usd:2095,margen:20,precio_mayorista_usd:2000,cant_min_mayorista:2,foto:''},
     {id:'demo-9',categoria:'Monopatines',codigo:'',nombre:'Xiaomi Scooter 6 Ultra 12"',descripcion:'Monopatín eléctrico · 12" · Bivolt',precio_usd:804,margen:20,precio_mayorista_usd:780,cant_min_mayorista:3,foto:''},
-    {id:'demo-10',categoria:'Figuritas',codigo:'',nombre:'Caja Panini x1000 sobres · Mundial 2026',descripcion:'1000 sobres cerrados · 7 figuritas c/u · Colección oficial FIFA',precio_usd:1421,margen:20,precio_mayorista_usd:1380,cant_min_mayorista:2,foto:'https://i.postimg.cc/T1mxfR3C/2884-628-caja-de-figuritas-copa-del-mundo-mundial-2026-panini-coleccion-oficial-wowco-com-ar.jpg'},
+    {id:'demo-10',categoria:'Coleccionables',codigo:'',nombre:'Caja Panini x1000 sobres · Mundial 2026',descripcion:'1000 sobres cerrados · 7 figuritas c/u · Colección oficial FIFA',precio_usd:1421,margen:20,precio_mayorista_usd:1380,cant_min_mayorista:2,foto:'https://i.postimg.cc/T1mxfR3C/2884-628-caja-de-figuritas-copa-del-mundo-mundial-2026-panini-coleccion-oficial-wowco-com-ar.jpg'},
     {id:'demo-11',categoria:'Notebooks',codigo:'',nombre:'Notebook Asus ROG Strix G16 · AMD Ryzen 9 · RTX 5070',descripcion:'16GB RAM · SSD 1TB · 16" · Windows 11',precio_usd:1859,margen:20,precio_mayorista_usd:1800,cant_min_mayorista:2,foto:''},
     {id:'demo-12',categoria:'Xiaomi',codigo:'',nombre:'Xiaomi 17 · 12GB+512GB · 5G',descripcion:'6.3" DUAL 12GB+512GB 5G LEICA 50/50MP · Global',precio_usd:829,margen:20,precio_mayorista_usd:800,cant_min_mayorista:5,foto:''},
   ];
@@ -600,7 +600,7 @@ function renderProductos() {
 }
 
 function actualizarContadores() {
-  const cats = ['iPhone','Motorola','Samsung','Xiaomi','MacBook','Notebooks','JBL','Drones','Monopatines','Aspiradoras','Camaras','Lentes','Figuritas'];
+  const cats = ['iPhone','Motorola','Samsung','Xiaomi','MacBook','Notebooks','JBL','Drones','Monopatines','Aspiradoras','Camaras','Lentes','Coleccionables'];
   document.getElementById('count-all').textContent = todosProductos.length;
   cats.forEach(c => {
     const el = document.getElementById('count-' + c);
