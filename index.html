@@ -6,6 +6,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TriunfAr Market — Electrónica y más</title>
 <meta name="description" content="Productos reales, precios justos y envíos a todo el país. Celulares, notebooks, drones, JBL y más.">
+
+<!-- Vista previa al compartir el link (WhatsApp, Instagram, etc.) -->
+<!-- IMPORTANTE: subí og-image.png a postimages.org (Enlace directo) y pegá ese link acá abajo, reemplazando OG_IMAGE_URL_AQUI -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://triunfarmarket.github.io/">
+<meta property="og:title" content="TriunfAr Market — Electrónica y más">
+<meta property="og:description" content="Productos reales, precios justos y envíos a todo el país. Celulares, notebooks, drones, JBL y más.">
+<meta property="og:image" content="OG_IMAGE_URL_AQUI">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TriunfAr Market — Electrónica y más">
+<meta name="twitter:description" content="Productos reales, precios justos y envíos a todo el país.">
+<meta name="twitter:image" content="OG_IMAGE_URL_AQUI">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -59,7 +74,13 @@ body.landing-open{overflow:hidden;}
 .nav-dolar-dot{width:6px;height:6px;border-radius:50%;background:#4ADE80;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 .nav-right{display:flex;align-items:center;gap:10px;}
-.nav-wa{display:flex;align-items:center;gap:6px;background:var(--dorado);color:var(--negro);font-size:11px;font-weight:500;padding:7px 12px;border-radius:6px;text-decoration:none;}
+.nav-wa{display:flex;align-items:center;gap:6px;background:var(--dorado);color:var(--negro);font-size:11px;font-weight:500;padding:7px 12px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;}
+.nav-wa-wrap{position:relative;}
+.nav-wa-chev{font-size:9px;margin-left:1px;}
+.nav-wa-menu{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.25);display:none;flex-direction:column;min-width:150px;overflow:hidden;z-index:300;}
+.nav-wa-menu.show{display:flex;}
+.nav-wa-menu a{padding:11px 14px;font-size:12px;color:var(--negro);text-decoration:none;display:flex;align-items:center;gap:8px;font-weight:500;}
+.nav-wa-menu a:hover{background:var(--crema);}
 
 /* ── HERO CHICO ── */
 .hero{background:var(--negro);padding:1.5rem;text-align:center;border-bottom:1px solid rgba(212,160,23,0.2);}
@@ -117,6 +138,7 @@ body.landing-open{overflow:hidden;}
 .prod-precio-usd{font-size:11px;color:var(--muted);margin-top:2px;}
 .prod-envio{font-size:10px;color:var(--verde);margin-top:3px;font-weight:500;}
 .prod-mayorista{font-size:10px;color:var(--azul);margin-top:3px;font-weight:500;}
+.prod-stock{font-size:9.5px;color:var(--muted);margin-top:3px;font-style:italic;}
 .prod-footer{display:flex;gap:6px;margin-top:10px;}
 .btn-consultar{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;background:var(--negro);color:var(--dorado);font-size:10px;font-weight:500;padding:7px 8px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity 0.15s;}
 .btn-consultar:hover{opacity:0.85;}
@@ -148,6 +170,7 @@ body.landing-open{overflow:hidden;}
 .modal-precio-usd{font-size:14px;color:var(--muted);margin-top:3px;}
 .modal-envio{font-size:12px;color:var(--verde);margin-top:6px;font-weight:500;line-height:1.5;}
 .modal-garantia{font-size:11px;color:var(--sec);margin-top:8px;line-height:1.55;padding-top:8px;border-top:1px solid var(--borde);}
+.modal-stock{font-size:10.5px;color:var(--muted);margin-top:5px;font-style:italic;}
 .modal-mayorista{margin-top:10px;padding-top:10px;border-top:1px solid var(--borde);}
 .modal-mayorista-title{font-size:11px;font-weight:600;color:var(--azul);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;}
 .modal-mayorista-precio{font-size:16px;font-weight:600;color:var(--azul);}
@@ -155,6 +178,9 @@ body.landing-open{overflow:hidden;}
 .modal-btns{display:flex;gap:10px;margin-top:1rem;}
 .modal-btn-wa{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--negro);color:var(--dorado);font-size:13px;font-weight:500;padding:12px;border-radius:8px;text-decoration:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;}
 .modal-btn-mp{display:flex;align-items:center;justify-content:center;gap:6px;background:#009EE3;color:#fff;font-size:13px;font-weight:500;padding:12px 18px;border-radius:8px;text-decoration:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;}
+.modal-btn-share{width:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--crema);color:var(--sec);font-size:16px;border-radius:8px;border:1px solid var(--borde);cursor:pointer;}
+.modal-btn-share:hover{background:var(--borde);}
+.modal-btn-share.copied{background:var(--dorado);color:var(--negro);border-color:var(--dorado);}
 
 /* ── TRUST BAR ── */
 .trust-bar{background:#1A1A1A;padding:0.6rem 1.5rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;}
@@ -216,10 +242,17 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
       <span class="nav-dolar-label">USD Blue</span>
       <span class="nav-dolar-val" id="dolar-val">cargando...</span>
     </div>
-    <a href="https://wa.me/549TUNUMERO?text=Hola!%20Vi%20tu%20tienda%20TriunfAr%20Market%20y%20quiero%20consultar." class="nav-wa" target="_blank">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
-      <span>WhatsApp</span>
-    </a>
+    <div class="nav-wa-wrap">
+      <button class="nav-wa" onclick="toggleWaMenu(event)" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+        <span>WhatsApp</span>
+        <span class="nav-wa-chev">▾</span>
+      </button>
+      <div class="nav-wa-menu" id="nav-wa-menu">
+        <a href="https://wa.me/5493482545079?text=Hola!%20Vi%20tu%20tienda%20TriunfAr%20Market%20y%20quiero%20consultar." target="_blank">👤 Yamir</a>
+        <a href="https://wa.me/5493482533984?text=Hola!%20Vi%20tu%20tienda%20TriunfAr%20Market%20y%20quiero%20consultar." target="_blank">👤 Mateo</a>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -339,6 +372,7 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
       <div class="modal-precio-usd" id="modal-precio-usd"></div>
       <div class="modal-envio">📦 + envío · Correo Argentino / OCA / Andreani / Via Cargo<br>Consultá el costo a tu ciudad por WhatsApp</div>
       <div class="modal-garantia">🛡️ Producto original con garantía. Demora de reparación por garantía: 1 a 2 meses.</div>
+      <div class="modal-stock">📅 Producto a pedido · Demora 5 días hábiles</div>
       <div class="modal-mayorista" id="modal-mayorista-block" style="display:none;">
         <div class="modal-mayorista-title">💼 Precio Mayorista</div>
         <div class="modal-mayorista-precio" id="modal-mayorista-precio"></div>
@@ -346,21 +380,29 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
       </div>
     </div>
     <div class="modal-btns">
-      <a href="#" class="modal-btn-wa" id="modal-btn-wa" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
-        Consultar por WhatsApp
+      <a href="#" class="modal-btn-wa" id="modal-btn-wa-yamir" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+        Yamir
       </a>
-      <a href="https://mpago.la/TULINK" class="modal-btn-mp" target="_blank">
+      <a href="#" class="modal-btn-wa" id="modal-btn-wa-mateo" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.103 1.508 5.833L0 24l6.335-1.48A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.214-3.727.977.996-3.638-.234-.374A9.818 9.818 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182S21.818 6.58 21.818 12 17.42 21.818 12 21.818z"/></svg>
+        Mateo
+      </a>
+    </div>
+    <div class="modal-btns" style="margin-top:8px;">
+      <a href="https://mpago.la/TULINK" class="modal-btn-mp" id="modal-btn-mp" target="_blank" style="flex:1;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
         Pagar
       </a>
+      <button class="modal-btn-share" id="modal-btn-share" onclick="compartirProducto()" type="button" title="Copiar link de este producto">🔗</button>
     </div>
   </div>
 </div>
 
 <script>
 // ── CONFIGURACIÓN ──────────────────────────────────────────────
-const WA_NUM = '549TUNUMERO';
+const WA_YAMIR = '5493482545079';
+const WA_MATEO = '5493482533984';
 const MP_LINK = 'https://mpago.la/TULINK';
 
 // ID del Google Sheet — reemplazá con el tuyo
@@ -377,6 +419,7 @@ let descMayorista = 10;
 let catActiva = '';
 let todosProductos = [];
 let productosFiltrados = [];
+let productoActualId = null; // producto abierto en el modal (para el link para compartir)
 
 // ── ENTRADA A LA TIENDA ──────────────────────────────────────────
 function entrarTienda() {
@@ -385,6 +428,16 @@ function entrarTienda() {
   document.body.classList.remove('landing-open');
   window.scrollTo(0, 0);
 }
+
+// ── MENÚ WHATSAPP (NAV: Yamir / Mateo) ──────────────────────────
+function toggleWaMenu(e) {
+  e.stopPropagation();
+  document.getElementById('nav-wa-menu').classList.toggle('show');
+}
+document.addEventListener('click', () => {
+  const menu = document.getElementById('nav-wa-menu');
+  if (menu) menu.classList.remove('show');
+});
 
 // ── COTIZACIÓN DÓLAR ────────────────────────────────────────────
 async function cargarDolar() {
@@ -475,20 +528,16 @@ async function cargarProductos() {
 
   try {
     const hojas = ['iPhone','Motorola','Samsung','Xiaomi','MacBook','Notebooks','JBL','Drones','Monopatines','Aspiradoras','Camaras','Lentes','Coleccionables'];
-    let todos = [];
 
-    // Banco de fotos: pestaña "Fotos" con columnas Nombre | Foto.
-    // Así la imagen queda atada al NOMBRE del producto, no a la fila:
-    // si reordenás, agregás o borrás filas en las pestañas de categoría,
-    // la foto correcta se sigue encontrando sola por el nombre.
-    const fotosMap = await cargarFotos();
-
-    for (const hoja of hojas) {
+    // Pide el banco de fotos y las 13 pestañas de categoría TODO AL MISMO TIEMPO
+    // (antes se pedía una por una, en fila, y eso hacía que tardara mucho más).
+    async function cargarHoja(hoja) {
+      const items = [];
       try {
         // Usar exportación CSV — funciona con Sheet público sin API key
         const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(hoja)}`;
         const res = await fetch(url);
-        if (!res.ok) continue;
+        if (!res.ok) return items;
         const text = await res.text();
         const rows = parseCSV(text);
         rows.forEach((cols, i) => {
@@ -499,9 +548,7 @@ async function cargarProductos() {
           const margen = parseFloat(cols[5]?.replace(/[^0-9.]/g,'')) || margenGlobal;
           if (precio_usd === 0) return;
           const nombre = cols[1]?.trim() || '';
-          // Prioridad: banco de fotos por nombre → si no hay match, la columna Foto de la propia fila.
-          const foto = fotosMap[normalizarNombre(nombre)] || cols[8]?.trim() || '';
-          todos.push({
+          items.push({
             id: `${hoja}-${i}`,
             categoria: hoja,
             codigo: cols[0]?.trim() || '',
@@ -511,11 +558,26 @@ async function cargarProductos() {
             margen,
             precio_mayorista_usd: parseFloat(cols[6]?.replace(/[^0-9.]/g,'')) || 0,
             cant_min_mayorista: parseInt(cols[7]?.replace(/[^0-9]/g,'')) || cantMayorista,
-            foto,
+            foto_fila: cols[8]?.trim() || '', // respaldo si no está en el banco de fotos
           });
         });
       } catch(e) { console.log(`Error hoja ${hoja}:`, e); }
+      return items;
     }
+
+    const [fotosMap, ...resultadosPorHoja] = await Promise.all([
+      cargarFotos(),
+      ...hojas.map(cargarHoja),
+    ]);
+
+    // Banco de fotos: pestaña "Fotos" con columnas Nombre | Foto.
+    // Así la imagen queda atada al NOMBRE del producto, no a la fila:
+    // si reordenás, agregás o borrás filas en las pestañas de categoría,
+    // la foto correcta se sigue encontrando sola por el nombre.
+    const todos = resultadosPorHoja.flat().map(p => ({
+      ...p,
+      foto: fotosMap[normalizarNombre(p.nombre)] || p.foto_fila || '',
+    }));
 
     todosProductos = todos.length > 0 ? todos : getDemoProductos();
     actualizarContadores();
@@ -631,6 +693,7 @@ function renderProductos() {
         <div class="prod-precio-ars">${fmtARS(ars)} <span style="font-size:12px;font-weight:400;color:var(--muted);">+ envío</span></div>
         <div class="prod-precio-usd">U$S ${usdVenta.toLocaleString('es-AR')} + envío</div>
         <div class="prod-mayorista">💼 Mayorista desde ${cantMin} u: ${fmtARS(mayoristaARS)}</div>
+        <div class="prod-stock">📅 A pedido · Demora 5 días hábiles</div>
       </div>
     </div>`;
   }).join('');
@@ -671,10 +734,34 @@ function abrirModal(id) {
   mayorBlock.style.display = 'block';
 
   const msg = encodeURIComponent(`Hola! Vi tu tienda TriunfAr Market y quiero consultar por: ${p.nombre} — ${fmtARS(ars)} + envío. ¿Tienen stock?`);
-  document.getElementById('modal-btn-wa').href = `https://wa.me/${WA_NUM}?text=${msg}`;
+  document.getElementById('modal-btn-wa-yamir').href = `https://wa.me/${WA_YAMIR}?text=${msg}`;
+  document.getElementById('modal-btn-wa-mateo').href = `https://wa.me/${WA_MATEO}?text=${msg}`;
+  document.getElementById('modal-btn-mp').href = MP_LINK;
+
+  productoActualId = p.id;
+  history.replaceState(null, '', `#p=${encodeURIComponent(p.id)}`);
 
   document.getElementById('modal-overlay').classList.add('show');
   document.body.style.overflow = 'hidden';
+}
+
+// ── COMPARTIR PRODUCTO (link propio por producto) ───────────────
+function compartirProducto() {
+  if (!productoActualId) return;
+  const url = `${location.origin}${location.pathname}#p=${encodeURIComponent(productoActualId)}`;
+  const btn = document.getElementById('modal-btn-share');
+  const marcarCopiado = () => {
+    btn.textContent = '✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '🔗'; btn.classList.remove('copied'); }, 1500);
+  };
+  if (navigator.share) {
+    navigator.share({ title: 'TriunfAr Market', url }).catch(() => {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(marcarCopiado).catch(() => { prompt('Copiá el link:', url); });
+  } else {
+    prompt('Copiá el link:', url);
+  }
 }
 
 function cerrarModal(e) {
@@ -683,6 +770,8 @@ function cerrarModal(e) {
 function cerrarModalBtn() {
   document.getElementById('modal-overlay').classList.remove('show');
   document.body.style.overflow = document.getElementById('app').classList.contains('app-hidden') ? 'hidden' : '';
+  productoActualId = null;
+  if (location.hash.startsWith('#p=')) history.replaceState(null, '', location.pathname);
 }
 
 // ── BÚSQUEDA EN TIEMPO REAL ─────────────────────────────────────
@@ -700,9 +789,21 @@ document.getElementById('filter-cat').addEventListener('change', function() {
 // se muestra la pantalla de entrada, para que al tocar "Ver productos"
 // el catálogo ya esté listo.
 (async function init() {
-  await cargarDolar();
-  await cargarProductos();
+  // Dólar y productos se piden en paralelo — no hace falta esperar
+  // uno para arrancar el otro, así carga más rápido.
+  await Promise.all([cargarDolar(), cargarProductos()]);
   setInterval(cargarDolar, 5 * 60 * 1000); // actualizar dólar cada 5 min
+
+  // Link directo a un producto (ej: compartido por WhatsApp): #p=ID
+  // Si alguien entra con ese link, salteamos la portada y abrimos
+  // directo la ficha del producto.
+  if (location.hash.startsWith('#p=')) {
+    const id = decodeURIComponent(location.hash.slice(3));
+    if (todosProductos.some(p => p.id === id)) {
+      entrarTienda();
+      abrirModal(id);
+    }
+  }
 })();
 </script>
 
