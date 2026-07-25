@@ -1294,7 +1294,7 @@ function generarOrdenPDF() {
   const productosDetalle = carrito.map(item => {
     const { ars } = precioItemCarrito(item);
     return `${item.nombre} x${item.cantidad} (${fmtARSpdf(ars)} c/u) = ${fmtARSpdf(ars * item.cantidad)}`;
-  }).join(' | ');
+  }).join('\n');
 
   registrarPedidoEnSheet({
     fecha: `${fecha} ${hora}`,
