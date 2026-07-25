@@ -8,18 +8,18 @@
 <meta name="description" content="Productos reales, precios justos y envíos a todo el país. Celulares, notebooks, drones, JBL y más.">
 
 <!-- Vista previa al compartir el link (WhatsApp, Instagram, etc.) -->
-<!-- IMPORTANTE: subí og-image.png a postimages.org (Enlace directo) y pegá ese link acá abajo, reemplazando OG_IMAGE_URL_AQUI -->
+<!-- La imagen og-image.png tiene que estar en la RAIZ del mismo repo de GitHub que este index.html -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://triunfarmarket.github.io/">
 <meta property="og:title" content="TriunfAr Market — Electrónica y más">
 <meta property="og:description" content="Productos reales, precios justos y envíos a todo el país. Celulares, notebooks, drones, JBL y más.">
-<meta property="og:image" content="OG_IMAGE_URL_AQUI">
+<meta property="og:image" content="https://triunfarmarket.github.io/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="TriunfAr Market — Electrónica y más">
 <meta name="twitter:description" content="Productos reales, precios justos y envíos a todo el país.">
-<meta name="twitter:image" content="OG_IMAGE_URL_AQUI">
+<meta name="twitter:image" content="https://triunfarmarket.github.io/og-image.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -168,6 +168,10 @@ body.landing-open{overflow:hidden;}
 .cat-item:hover{background:var(--crema);}
 .cat-item.active{background:var(--negro);color:#fff;}
 .cat-item.active .cat-count{color:var(--dorado);}
+.cat-item[data-cat="__OFERTAS__"]{color:var(--rojo);font-weight:600;}
+.cat-item[data-cat="__OFERTAS__"] .cat-count{background:var(--rojo);color:#fff;border-radius:99px;padding:1px 7px;}
+.cat-item[data-cat="__OFERTAS__"].active{background:var(--rojo);color:#fff;}
+.cat-item[data-cat="__OFERTAS__"].active .cat-count{background:#fff;color:var(--rojo);}
 .cat-icon{font-size:16px;width:20px;text-align:center;}
 .cat-count{margin-left:auto;font-size:10px;color:var(--muted);}
 .sidebar-garantia{margin-top:14px;padding-top:14px;border-top:1px solid var(--borde);font-size:10.5px;color:var(--muted);line-height:1.6;}
@@ -188,6 +192,9 @@ body.landing-open{overflow:hidden;}
 .prod-badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:600;padding:3px 8px;border-radius:99px;letter-spacing:0.04em;}
 .badge-nuevo{background:var(--dorado);color:var(--negro);}
 .badge-mayor{background:var(--azul);color:#fff;}
+.badge-oferta{background:var(--rojo);color:#fff;left:auto;right:8px;}
+.prod-precio-tachado{font-size:12px;font-weight:400;color:var(--muted);text-decoration:line-through;margin-right:6px;}
+.prod-precio-ars.oferta{color:var(--rojo);}
 .prod-body{padding:12px;}
 .prod-marca{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;}
 .prod-name{font-size:12px;font-weight:500;color:var(--negro);margin-bottom:4px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
@@ -227,7 +234,10 @@ body.landing-open{overflow:hidden;}
 .modal-name{font-size:18px;font-weight:500;color:var(--negro);margin:4px 0 8px;letter-spacing:-0.3px;}
 .modal-desc{font-size:13px;color:var(--sec);line-height:1.65;margin-bottom:1rem;}
 .modal-precios{background:var(--crema);border-radius:10px;padding:1rem;margin-bottom:1rem;}
+.modal-badge-oferta{display:inline-block;background:var(--rojo);color:#fff;font-size:11px;font-weight:600;padding:3px 9px;border-radius:99px;letter-spacing:0.04em;margin-bottom:6px;}
+.modal-precio-tachado{font-size:15px;color:var(--muted);text-decoration:line-through;margin-right:8px;}
 .modal-precio-ars{font-size:28px;font-weight:600;color:var(--negro);letter-spacing:-1px;}
+.modal-precio-ars.oferta{color:var(--rojo);}
 .modal-precio-usd{font-size:14px;color:var(--muted);margin-top:3px;}
 .modal-envio{font-size:12px;color:var(--verde);margin-top:6px;font-weight:500;line-height:1.5;}
 .modal-garantia{font-size:11px;color:var(--sec);margin-top:8px;line-height:1.55;padding-top:8px;border-top:1px solid var(--borde);}
@@ -343,6 +353,7 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
   </div>
   <select class="search-select" id="filter-cat">
     <option value="">Todas las categorías</option>
+    <option value="__OFERTAS__">🔥 Ofertas</option>
     <option value="iPhone">iPhone</option>
     <option value="Motorola">Motorola</option>
     <option value="Samsung">Samsung</option>
@@ -376,6 +387,7 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
         <span class="cat-icon">🏪</span> Todos
         <span class="cat-count" id="count-all">0</span>
       </li>
+      <li class="cat-item" data-cat="__OFERTAS__" onclick="filtrarCat(this,'__OFERTAS__')"><span class="cat-icon">🔥</span> Ofertas <span class="cat-count" id="count-Ofertas">0</span></li>
       <li class="cat-item" data-cat="iPhone" onclick="filtrarCat(this,'iPhone')"><span class="cat-icon">📱</span> iPhone <span class="cat-count" id="count-iPhone">0</span></li>
       <li class="cat-item" data-cat="Motorola" onclick="filtrarCat(this,'Motorola')"><span class="cat-icon">📱</span> Motorola <span class="cat-count" id="count-Motorola">0</span></li>
       <li class="cat-item" data-cat="Samsung" onclick="filtrarCat(this,'Samsung')"><span class="cat-icon">📱</span> Samsung <span class="cat-count" id="count-Samsung">0</span></li>
@@ -437,7 +449,8 @@ footer{background:#0A0A0A;padding:1.5rem;text-align:center;}
     <h2 class="modal-name" id="modal-name"></h2>
     <p class="modal-desc" id="modal-desc"></p>
     <div class="modal-precios">
-      <div class="modal-precio-ars" id="modal-precio-ars"></div>
+      <span class="modal-badge-oferta" id="modal-badge-oferta" style="display:none;"></span>
+      <div class="modal-precio-ars" id="modal-precio-ars"><span class="modal-precio-tachado" id="modal-precio-tachado" style="display:none;"></span><span id="modal-precio-ars-val"></span></div>
       <div class="modal-precio-usd" id="modal-precio-usd"></div>
       <div class="modal-envio">📦 + envío · Correo Argentino / OCA / Andreani / Via Cargo<br>Consultá el costo a tu ciudad por WhatsApp</div>
       <div class="modal-garantia">🛡️ Producto original con garantía. Demora de reparación por garantía: 1 a 2 meses.</div>
@@ -740,11 +753,12 @@ async function cargarProductos() {
         rows.forEach((cols, i) => {
           if (i === 0) return; // saltar encabezado
           if (!cols[1] || cols[1].trim() === '') return;
-          // A=Código B=Nombre C=Descripción D=Precio_USD E=Precio_ARS F=Margen_% G=Precio_Mayorista_USD H=Cant_Min_Mayorista I=Foto
+          // A=Código B=Nombre C=Descripción D=Precio_USD E=Precio_ARS F=Margen_% G=Precio_Mayorista_USD H=Cant_Min_Mayorista I=Foto J=Precio_Proveedor K=Moneda L=Oferta_%
           const precio_usd = parseFloat(cols[3]?.replace(/[^0-9.]/g,'')) || 0;
           const margen = parseFloat(cols[5]?.replace(/[^0-9.]/g,'')) || margenGlobal;
           if (precio_usd === 0) return;
           const nombre = cols[1]?.trim() || '';
+          const oferta_pct = Math.max(0, Math.min(90, parseFloat(cols[11]?.replace(/[^0-9.]/g,'')) || 0));
           items.push({
             id: `${hoja}-${i}`,
             categoria: hoja,
@@ -756,6 +770,7 @@ async function cargarProductos() {
             precio_mayorista_usd: parseFloat(cols[6]?.replace(/[^0-9.]/g,'')) || 0,
             cant_min_mayorista: parseInt(cols[7]?.replace(/[^0-9]/g,'')) || cantMayorista,
             foto_fila: cols[8]?.trim() || '', // respaldo si no está en el banco de fotos
+            oferta_pct, // % de descuento sobre el precio de venta normal, 0 = sin oferta
           });
         });
       } catch(e) { console.log(`Error hoja ${hoja}:`, e); }
@@ -792,11 +807,11 @@ function getDemoProductos() {
   return [
     {id:'demo-1',categoria:'iPhone',codigo:'',nombre:'iPhone 17 · 8GB+256GB · Black',descripcion:'6.3" 8GB+256GB A3520 · Nuevo sellado · Garantía oficial',precio_usd:940,margen:20,precio_mayorista_usd:925,cant_min_mayorista:5,foto:''},
     {id:'demo-2',categoria:'iPhone',codigo:'',nombre:'iPhone 17 Pro MAX eSIM · 12GB+256GB · Deep Blue',descripcion:'6.9" 12GB+256GB A3257 · Nuevo sellado',precio_usd:1295,margen:20,precio_mayorista_usd:1260,cant_min_mayorista:5,foto:''},
-    {id:'demo-3',categoria:'iPhone',codigo:'',nombre:'iPhone 16 · 8GB+128GB · Pink',descripcion:'6.1" 8GB+128GB A3287 · Nuevo sellado',precio_usd:780,margen:20,precio_mayorista_usd:759,cant_min_mayorista:5,foto:''},
+    {id:'demo-3',categoria:'iPhone',codigo:'',nombre:'iPhone 16 · 8GB+128GB · Pink',descripcion:'6.1" 8GB+128GB A3287 · Nuevo sellado',precio_usd:780,margen:20,precio_mayorista_usd:759,cant_min_mayorista:5,foto:'',oferta_pct:15},
     {id:'demo-4',categoria:'Motorola',codigo:'',nombre:'Motorola Edge60 PRO · 8GB+256GB',descripcion:'6.7" 5G DUAL 50/50MP · Pant. Spark Graphite',precio_usd:345,margen:20,precio_mayorista_usd:330,cant_min_mayorista:5,foto:''},
     {id:'demo-5',categoria:'Samsung',codigo:'',nombre:'Samsung S26 Ultra · 12GB+256GB · Azul',descripcion:'6.9" 200MP 5G · Nuevo sellado',precio_usd:1025,margen:20,precio_mayorista_usd:990,cant_min_mayorista:5,foto:''},
     {id:'demo-6',categoria:'MacBook',codigo:'',nombre:'MacBook Air 2026 · M5 · 16GB+512GB · 13.6"',descripcion:'Apple M5 · 16GB RAM · SSD 512GB · 13.6"',precio_usd:2250,margen:20,precio_mayorista_usd:2180,cant_min_mayorista:2,foto:''},
-    {id:'demo-7',categoria:'JBL',codigo:'',nombre:'JBL Boombox 4',descripcion:'Parlante portátil Bluetooth · Original sellado con garantía',precio_usd:689,margen:20,precio_mayorista_usd:650,cant_min_mayorista:3,foto:''},
+    {id:'demo-7',categoria:'JBL',codigo:'',nombre:'JBL Boombox 4',descripcion:'Parlante portátil Bluetooth · Original sellado con garantía',precio_usd:689,margen:20,precio_mayorista_usd:650,cant_min_mayorista:3,foto:'',oferta_pct:10},
     {id:'demo-8',categoria:'Drones',codigo:'',nombre:'DJI Mini 5 Pro · Fly More Combo',descripcion:'Drone DJI RC 2 · Nuevo sellado · Garantía 1 año',precio_usd:2095,margen:20,precio_mayorista_usd:2000,cant_min_mayorista:2,foto:''},
     {id:'demo-9',categoria:'Monopatines',codigo:'',nombre:'Xiaomi Scooter 6 Ultra 12"',descripcion:'Monopatín eléctrico · 12" · Bivolt',precio_usd:804,margen:20,precio_mayorista_usd:780,cant_min_mayorista:3,foto:''},
     {id:'demo-10',categoria:'Coleccionables',codigo:'',nombre:'Caja Panini x1000 sobres · Mundial 2026',descripcion:'1000 sobres cerrados · 7 figuritas c/u · Colección oficial FIFA',precio_usd:1421,margen:20,precio_mayorista_usd:1380,cant_min_mayorista:2,foto:'https://i.postimg.cc/T1mxfR3C/2884-628-caja-de-figuritas-copa-del-mundo-mundial-2026-panini-coleccion-oficial-wowco-com-ar.jpg'},
@@ -812,10 +827,34 @@ function calcARS(usd, margen) {
 function calcVentaUSD(usd, margen) {
   return Math.round(usd * (1 + margen / 100));
 }
-function calcMayoristaARS(usd, margen, desc) {
-  const precioVenta = usd * (1 + margen / 100);
-  const descuento = desc / 100;
+// ── OFERTAS: precio de venta normal, con el % de descuento de la columna Oferta_% ya aplicado ──
+function tieneOferta(p) {
+  return (p.oferta_pct || 0) > 0;
+}
+function calcARSFinal(p, margen) {
+  const ars = calcARS(p.precio_usd, margen);
+  return tieneOferta(p) ? Math.round(ars * (1 - p.oferta_pct / 100)) : ars;
+}
+function calcVentaUSDFinal(p, margen) {
+  const usd = calcVentaUSD(p.precio_usd, margen);
+  return tieneOferta(p) ? Math.round(usd * (1 - p.oferta_pct / 100)) : usd;
+}
+// Precio mayorista: si el producto tiene un Precio_Mayorista_USD propio
+// cargado en el Sheet (columna G), se usa ese directo. Si no, como
+// respaldo se calcula con el descuento global de siempre.
+function calcMayoristaARS(p, margen) {
+  if (p.precio_mayorista_usd && p.precio_mayorista_usd > 0) {
+    return Math.round(p.precio_mayorista_usd * dolarBlue);
+  }
+  const precioVenta = p.precio_usd * (1 + margen / 100);
+  const descuento = descMayorista / 100;
   return Math.round(precioVenta * (1 - descuento) * dolarBlue);
+}
+function precioMayoristaUnitarioUSD(p, margen) {
+  if (p.precio_mayorista_usd && p.precio_mayorista_usd > 0) {
+    return p.precio_mayorista_usd;
+  }
+  return p.precio_usd * (1 + margen / 100) * (1 - descMayorista / 100);
 }
 function fmtARS(n) {
   return '$' + n.toLocaleString('es-AR');
@@ -841,7 +880,7 @@ function renderProductos() {
   const orden = document.getElementById('sort-main').value;
 
   let prods = todosProductos.filter(p => {
-    const matchCat = !catFiltro || p.categoria === catFiltro;
+    const matchCat = catFiltro === '__OFERTAS__' ? tieneOferta(p) : (!catFiltro || p.categoria === catFiltro);
     const matchBusq = !busqueda ||
       p.nombre.toLowerCase().includes(busqueda) ||
       p.descripcion.toLowerCase().includes(busqueda) ||
@@ -850,10 +889,10 @@ function renderProductos() {
     return matchCat && matchBusq;
   });
 
-  // Ordenar
+  // Ordenar (con el precio final, ya con la oferta aplicada si tiene)
   prods.sort((a, b) => {
-    if (orden === 'precio-asc') return calcARS(a.precio_usd, a.margen || margenGlobal) - calcARS(b.precio_usd, b.margen || margenGlobal);
-    if (orden === 'precio-desc') return calcARS(b.precio_usd, b.margen || margenGlobal) - calcARS(a.precio_usd, a.margen || margenGlobal);
+    if (orden === 'precio-asc') return calcARSFinal(a, a.margen || margenGlobal) - calcARSFinal(b, b.margen || margenGlobal);
+    if (orden === 'precio-desc') return calcARSFinal(b, b.margen || margenGlobal) - calcARSFinal(a, a.margen || margenGlobal);
     return a.nombre.localeCompare(b.nombre);
   });
 
@@ -861,33 +900,44 @@ function renderProductos() {
   document.getElementById('count-visible').textContent = prods.length;
 
   if (prods.length === 0) {
+    const msgVacio = (catFiltro === '__OFERTAS__' && !busqueda)
+      ? 'No hay productos en oferta por el momento. ¡Volvé a mirar pronto!'
+      : 'No encontramos productos con esa búsqueda.';
     grid.innerHTML = `<div class="empty" style="grid-column:1/-1;">
-      <div style="font-size:40px;">🔍</div>
-      <p>No encontramos productos con esa búsqueda.</p>
+      <div style="font-size:40px;">${catFiltro === '__OFERTAS__' ? '🔥' : '🔍'}</div>
+      <p>${msgVacio}</p>
     </div>`;
     return;
   }
 
   grid.innerHTML = prods.map(p => {
     const margen = p.margen || margenGlobal;
-    const ars = calcARS(p.precio_usd, margen);
-    const usdVenta = calcVentaUSD(p.precio_usd, margen);
-    const mayoristaARS = calcMayoristaARS(p.precio_usd, margen, descMayorista);
+    const enOferta = tieneOferta(p);
+    const arsNormal = calcARS(p.precio_usd, margen);
+    const usdNormal = calcVentaUSD(p.precio_usd, margen);
+    const ars = enOferta ? calcARSFinal(p, margen) : arsNormal;
+    const usdVenta = enOferta ? calcVentaUSDFinal(p, margen) : usdNormal;
+    const mayoristaARS = calcMayoristaARS(p, margen);
     const cantMin = p.cant_min_mayorista || cantMayorista;
     const imgHtml = p.foto
       ? `<img src="${p.foto}" alt="${p.nombre}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="prod-img-placeholder" style="display:none;">📦</div>`
       : `<div class="prod-img-placeholder">📦</div>`;
+    const badgeOferta = enOferta ? `<span class="prod-badge badge-oferta">-${p.oferta_pct}%</span>` : '';
+    const precioArsHtml = enOferta
+      ? `<div class="prod-precio-ars oferta"><span class="prod-precio-tachado">${fmtARS(arsNormal)}</span>${fmtARS(ars)} <span style="font-size:12px;font-weight:400;color:var(--muted);">+ envío</span></div>`
+      : `<div class="prod-precio-ars">${fmtARS(ars)} <span style="font-size:12px;font-weight:400;color:var(--muted);">+ envío</span></div>`;
     return `
     <div class="prod-card" onclick="abrirModal('${p.id}')">
       <div class="prod-img">
         ${imgHtml}
         <span class="prod-badge badge-nuevo">${p.categoria.toUpperCase()}</span>
+        ${badgeOferta}
       </div>
       <div class="prod-body">
         <p class="prod-marca">${p.categoria}</p>
         <p class="prod-name">${p.nombre}</p>
         <p class="prod-desc">${p.descripcion}</p>
-        <div class="prod-precio-ars">${fmtARS(ars)} <span style="font-size:12px;font-weight:400;color:var(--muted);">+ envío</span></div>
+        ${precioArsHtml}
         <div class="prod-precio-usd">U$S ${usdVenta.toLocaleString('es-AR')} + envío</div>
         <div class="prod-mayorista">💼 Mayorista desde ${cantMin} u: ${fmtARS(mayoristaARS)}</div>
         <div class="prod-stock">📅 A pedido · Demora 5 días hábiles</div>
@@ -904,6 +954,8 @@ function actualizarContadores() {
     const el = document.getElementById('count-' + c);
     if (el) el.textContent = todosProductos.filter(p => p.categoria === c).length;
   });
+  const elOfertas = document.getElementById('count-Ofertas');
+  if (elOfertas) elOfertas.textContent = todosProductos.filter(tieneOferta).length;
 }
 
 // ── MODAL ───────────────────────────────────────────────────────
@@ -916,15 +968,25 @@ function abrirModal(id) {
   const addBtn = document.getElementById('modal-btn-addcart');
   if (addBtn) { addBtn.textContent = '🛒 Agregar al carrito'; addBtn.classList.remove('added'); }
   const margen = p.margen || margenGlobal;
-  const ars = calcARS(p.precio_usd, margen);
-  const usdVenta = calcVentaUSD(p.precio_usd, margen);
-  const mayoristaARS = calcMayoristaARS(p.precio_usd, margen, descMayorista);
+  const enOferta = tieneOferta(p);
+  const arsNormal = calcARS(p.precio_usd, margen);
+  const usdNormal = calcVentaUSD(p.precio_usd, margen);
+  const ars = enOferta ? calcARSFinal(p, margen) : arsNormal;
+  const usdVenta = enOferta ? calcVentaUSDFinal(p, margen) : usdNormal;
+  const mayoristaARS = calcMayoristaARS(p, margen);
   const cantMin = p.cant_min_mayorista || cantMayorista;
 
   document.getElementById('modal-marca').textContent = p.categoria;
   document.getElementById('modal-name').textContent = p.nombre;
   document.getElementById('modal-desc').textContent = p.descripcion;
-  document.getElementById('modal-precio-ars').textContent = fmtARS(ars) + ' + envío';
+  const badgeEl = document.getElementById('modal-badge-oferta');
+  badgeEl.style.display = enOferta ? 'inline-block' : 'none';
+  badgeEl.textContent = enOferta ? `🔥 OFERTA -${p.oferta_pct}%` : '';
+  const tachadoEl = document.getElementById('modal-precio-tachado');
+  tachadoEl.style.display = enOferta ? 'inline' : 'none';
+  tachadoEl.textContent = enOferta ? fmtARS(arsNormal) : '';
+  document.getElementById('modal-precio-ars').classList.toggle('oferta', enOferta);
+  document.getElementById('modal-precio-ars-val').textContent = fmtARS(ars) + ' + envío';
   document.getElementById('modal-precio-usd').textContent = 'U$S ' + usdVenta.toLocaleString('es-AR') + ' + envío';
 
   const imgEl = document.getElementById('modal-img');
@@ -933,7 +995,7 @@ function abrirModal(id) {
 
   const mayorBlock = document.getElementById('modal-mayorista-block');
   document.getElementById('modal-mayorista-precio').textContent = fmtARS(mayoristaARS) + ' + envío';
-  document.getElementById('modal-mayorista-cond').textContent = `Precio especial comprando ${cantMin} o más unidades · U$S ${Math.round(p.precio_usd * (1 + margen/100) * (1 - descMayorista/100))} c/u`;
+  document.getElementById('modal-mayorista-cond').textContent = `Precio especial comprando ${cantMin} o más unidades · U$S ${Math.round(precioMayoristaUnitarioUSD(p, margen))} c/u`;
   mayorBlock.style.display = 'block';
 
   const msg = encodeURIComponent(`Hola! Vi tu tienda TriunfAr Market y quiero consultar por: ${p.nombre} — ${fmtARS(ars)} + envío. ¿Tienen stock?`);
@@ -1005,6 +1067,7 @@ function agregarAlCarrito(id, cantidad) {
       categoria: p.categoria,
       precio_usd: p.precio_usd,
       margen: p.margen || margenGlobal,
+      oferta_pct: p.oferta_pct || 0,
       foto: p.foto || '',
       cantidad,
     });
@@ -1052,9 +1115,14 @@ function actualizarBadgeCarrito() {
 }
 
 function precioItemCarrito(item) {
-  // Precio unitario final (con margen) en ARS y USD, al dólar actual.
-  const ars = calcARS(item.precio_usd, item.margen);
-  const usd = calcVentaUSD(item.precio_usd, item.margen);
+  // Precio unitario final (con margen y oferta si tiene) en ARS y USD, al dólar actual.
+  const pct = item.oferta_pct || 0;
+  let ars = calcARS(item.precio_usd, item.margen);
+  let usd = calcVentaUSD(item.precio_usd, item.margen);
+  if (pct > 0) {
+    ars = Math.round(ars * (1 - pct / 100));
+    usd = Math.round(usd * (1 - pct / 100));
+  }
   return { ars, usd };
 }
 
